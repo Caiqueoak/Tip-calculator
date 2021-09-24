@@ -1,0 +1,25 @@
+@import 'variables';
+
+// MOBILE RESOLUTION
+
+#root {
+  @include centered-flex;
+  flex-direction: column;
+  background-color: $Light-grayish-cyan2;
+  height: 100vh;
+}
+
+#main-container {
+  display: flex;
+  flex-direction: column;
+  background-color: $Light-grayish-cyan;
+  padding: 20px;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.number-inputs {
+  background: no-repeat center left 13px;
+  padding: 10px;
+  border: none;
+}
