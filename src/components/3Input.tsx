@@ -3,10 +3,13 @@ import React from "react";
 const Input = (props: any) => {
 	return (
 		<>
-			{props.children}
 			<input
-				className="number-inputs"
-				type="number"
+				type={props.type}
+				min='0'
+				step={props.step}
+				className='number-inputs'
+				id={props.id}
+				onChange={props.onChange}
 				style={{backgroundImage: props.icon}}
 			/>
 		</>
