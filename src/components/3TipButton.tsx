@@ -1,6 +1,9 @@
 import * as React from "react";
+import '../styles/TipButton.scss'
 
 const TipButton = (props: any) => {
+
+	const tipValue = props.tipValue;
 	return (
 		<>
 			<li>
@@ -9,8 +12,9 @@ const TipButton = (props: any) => {
 					className="tip-buttons-input"
 					value={props.tipValue}
 					onClick={props.onClick}
+					style={props.activeState}
 				>
-					{props.tipValue}%
+					{tipValue + '%'}
 				</button>
 			</li>
 		</>

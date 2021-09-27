@@ -1,0 +1,10 @@
+@import "variables";
+
+li {
+	width: 100%;
+	max-width: $tip-buttons-parent-max-size;
+	.tip-buttons-input {
+		@include tipButtons;
+		cursor: pointer;
+	}
+}

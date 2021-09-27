@@ -1,0 +1,15 @@
+@import 'variables';
+
+.number-inputs {
+	background: no-repeat center left 13px;
+	background-color: $Light-grayish-cyan;
+	padding: 8px;
+	border: none;
+	border-radius: 7px;
+	font-size: $input-font-size;
+	text-align: right;
+	color: $Very-dark-cyan;
+	font-weight: 700;
+	opacity: 1;
+	width: 100%;
+}

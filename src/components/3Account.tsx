@@ -1,20 +1,13 @@
-import React from 'react'
-import Amount from './4Amount';
+import React, { useContext } from "react";
+import Amount from "./4Amount";
 
-const Account = (props:any) => {
-
-  
-
-  return (
-    <div>
-      <Amount valueAmount={'0.00'} >
-        Tip Amount
-      </Amount>
-      <Amount valueAmount={'0.00'} >
-        Total
-      </Amount>
-    </div>
-  )
+function Account(props: any) {
+	return (
+		<div>
+			<Amount valueAmount={props.tipAmount}>Tip Amount</Amount>
+			<Amount valueAmount={props.total}>Total</Amount>
+		</div>
+	);
 }
 
 export default Account;
