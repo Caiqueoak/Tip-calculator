@@ -1,18 +1,19 @@
 import React from 'react'
 import dollarIcon from '../images/icon-dollar.svg'
+import '../styles/Amount.scss'
 
-function Amount(props:any) {
+const Amount = (props: any) => {
   return ( 
-    <>
-      <table>
+    <section className='amounts'>
+      <table className='amount-names'>
         <th>{props.children}</th>
         <tr>/ person</tr>
       </table>
-      <label>
+      <label className='amount-values'>
         <img src={dollarIcon} alt="dollar symbol" />
         {props.valueAmount}
       </label>
-    </>
+    </section>
    );
 }
 

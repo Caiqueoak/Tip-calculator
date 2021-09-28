@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import '../styles/Input.scss';
+import { AmountValuesContext } from "./1App";
 
 const Input = (props: any) => {
+	const {handleInputChange} = useContext(AmountValuesContext);
+
 	return (
 		<>
 			<input
@@ -11,7 +14,7 @@ const Input = (props: any) => {
 				className='number-inputs'
 				id={props.id}
 				placeholder={props.placeholder}
-				onChange={props.onChange}
+				onChange={handleInputChange}
 				style={{backgroundImage: props.icon}}
 			/>
 		</>

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import '../styles/_setup.scss';
+import React, { useState, useEffect, createContext } from "react";
+import "../styles/_setup.scss";
 import billIcon from "../images/icon-dollar.svg";
 import personIcon from "../images/icon-person.svg";
 
@@ -11,48 +11,54 @@ const icons = {
 };
 
 // Styles
-const {active, inative: inactive} = {
+const { active, inactive } = {
 	active: {
-		backgroundColor: 'hsl(172, 67%, 45%)',
-		color: 'hsl(183, 100%, 15%)',
+		backgroundColor: "hsl(172, 67%, 45%)",
+		color: "hsl(183, 100%, 15%)",
 	},
-	inative: {
-		backgroundColor: 'hsl(183, 100%, 15%)',
-		color: 'white',
-	}
-}
+	inactive: {
+		backgroundColor: "hsl(183, 100%, 15%)",
+		color: "white",
+	},
+};
+
+type StringNumber = string | number;
 
 const tipValues = [5, 10, 15, 25, 50];
+
+export const AmountValuesContext = createContext<any>(0);
 
 function App() {
 	// Account values
 	const [bill, setBill] = useState(0);
 	const [tipRate, setTipRate] = useState(0);
-	const [customInput, setCustomInput] = useState("Custom");
+	const [customInput, setCustomInput] = useState<StringNumber>("Custom");
 	const [peopleNumber, setPeopleNumber] = useState(0);
-	
+
 	// Results
-	const [tipAmount, setTipAmount] = useState(0);
-	const [total, setTotal] = useState(0);
+	const [tipAmount, setTipAmount] = useState<StringNumber>("0.00");
+	const [total, setTotal] = useState<StringNumber>("0.00");
 
 	// Styles
-	const [activeState, setActiveState] = useState(inactive)
+	const [activeState, setActiveState] = useState(inactive);
 
-	useEffect((defaultState = 0) => {
-		if(bill !== 0 && tipRate !== 0 && peopleNumber !==0) {
-			const tip = bill * tipRate;
-	
-			const tipAmountPerPeople = (tip / peopleNumber).toFixed(2);
-			const totalPerPeople = ((bill*100 + tip*100) / (peopleNumber*100)).toFixed(2);
-	
-			setTipAmount(Number(tipAmountPerPeople));
-			setTotal(Number(totalPerPeople));
-		}
-		else {
-			setTipAmount(Number((defaultState).toFixed(2)));
-			setTotal(defaultState);
-		}
-	}, [bill, tipRate, peopleNumber]);
+	useEffect(
+		(defaultState = 0) => {
+			if (bill !== 0 && tipRate !== 0 && peopleNumber !== 0) {
+				const tip = bill * tipRate;
+
+				const tipAmountPerPeople = (tip / peopleNumber).toFixed(2);
+				const totalPerPeople = (
+					(bill * 100 + tip * 100) /
+					(peopleNumber * 100)
+				).toFixed(2);
+
+				setTipAmount(Number(tipAmountPerPeople));
+				setTotal(Number(totalPerPeople));
+			}
+		},
+		[bill, tipRate, peopleNumber]
+	);
 
 	function handleInputChange(e: any): void {
 		const id = e.target.id;
@@ -73,11 +79,7 @@ function App() {
 
 		setTipRate(tipRate);
 		setCustomInput("Custom");
-		setActiveState(prevState => (
-			prevState !== active ? active : inactive
-		))
-		
-		console.log(activeState)
+		setActiveState((prevState) => (prevState !== active ? active : inactive));
 	}
 
 	function handleCustomInput(e: any): void {
@@ -87,22 +89,30 @@ function App() {
 		setCustomInput(e.target.value);
 	}
 
+	const imports = {
+		icons: icons,
+		tipValues: tipValues,
+		customInput: customInput,
+		tipAmount: tipAmount,
+		total: total,
+		activeState: activeState,
+		handleTipButtonClick: handleTipButtonClick,
+		handleCustomInput: handleCustomInput,
+		handleInputChange: handleInputChange,
+	};
+
 	return (
 		<>
 			{/* {LOGO} */}
-			<img src={require("../images/logo.svg").default} alt="splitter logo" id='logo' />
+			<img
+				src={require("../images/logo.svg").default}
+				alt="splitter logo"
+				id="logo"
+			/>
 
-				<Form
-					icons={icons}
-					tipValues={tipValues}
-					tipAmount={tipAmount}
-					total={total}
-					activeState={activeState}
-					customInput={customInput}
-					onCustomChange={handleCustomInput}
-					onClick={handleTipButtonClick}
-					onChange={handleInputChange}
-				/>
+			<AmountValuesContext.Provider value={imports}>
+				<Form />
+			</AmountValuesContext.Provider>
 		</>
 	);
 }

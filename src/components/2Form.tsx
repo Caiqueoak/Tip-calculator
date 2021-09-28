@@ -4,8 +4,11 @@ import "../styles/Form.scss";
 import TipButton from "./3TipButton";
 import Input from "./3Input";
 import Account from "./3Account";
+import { AmountValuesContext } from "./1App";
 
 function Form(props: any) {
+	const {icons, tipValues, handleCustomInput, customInput, activeState} = useContext(AmountValuesContext);
+
 	return (
 		<form id="main-container">
 			{/* {INPUT DATA} */}
@@ -18,8 +21,7 @@ function Form(props: any) {
 						step="0.01"
 						id="bill-input"
 						placeholder={0}
-						onChange={props.onChange}
-						icon={props.icons.bill}
+						icon={icons.bill}
 					/>
 				</section>
 
@@ -27,18 +29,17 @@ function Form(props: any) {
 				<section className="input-datas">
 					<h2 className="headings">Select Tip %</h2>
 					<ol id="tip-buttons-list">
-						{props.tipValues.map((tipValue: number) => (
+						{tipValues.map((tipValue: number) => (
 							<TipButton
-								activeState={props.activeState}
-								onClick={props.onClick}
+								activeState={activeState}
 								tipValue={tipValue}
 								key={tipValue}
 							/>
 						))}
 						<li>
 							<input
-								onChange={props.onCustomChange}
-								value={props.customInput}
+								onChange={handleCustomInput}
+								value={customInput}
 								min="0"
 								step="0.01"
 								id="custom-tip-input"
@@ -56,9 +57,8 @@ function Form(props: any) {
 						type="number"
 						step="0.01"
 						placeholder={0}
-						onChange={props.onChange}
 						id="people-number-input"
-						icon={props.icons.people}
+						icon={icons.people}
 					/>
 				</section>
 			</main>
@@ -66,7 +66,7 @@ function Form(props: any) {
 			{/* {ACCOUNT} */}
 			<aside id="account-container">
 				{/* {ACCOUNT OUTPUT} */}
-				<Account tipAmount={props.tipAmount} total={props.total} />
+				<Account />
 
 				<button id="reset-button" type="reset">
 					RESET

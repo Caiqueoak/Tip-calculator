@@ -1,7 +1,9 @@
-import * as React from "react";
+import React, { useContext } from "react";
 import '../styles/TipButton.scss'
+import { AmountValuesContext } from "./1App";
 
 const TipButton = (props: any) => {
+	const {handleTipButtonClick} = useContext(AmountValuesContext)
 
 	const tipValue = props.tipValue;
 	return (
@@ -11,8 +13,8 @@ const TipButton = (props: any) => {
 					type="button"
 					className="tip-buttons-input"
 					value={props.tipValue}
-					onClick={props.onClick}
 					style={props.activeState}
+					onClick={handleTipButtonClick}
 				>
 					{tipValue + '%'}
 				</button>

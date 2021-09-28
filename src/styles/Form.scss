@@ -4,9 +4,10 @@
 
 #main-container {
 	display: flex;
-	flex-direction: column;
-	row-gap: 30px;
+	flex-wrap: wrap;
+	justify-content: center;
 	background-color: $White;
+	row-gap: 30px;
 	padding: 20px;
 	width: 100%;
 	border-radius: 10px;
@@ -53,6 +54,9 @@
 	background-color: $Very-dark-cyan;
 	border-radius: 12px;
 	padding: 20px;
+	width: 100%;
+	max-width: 400px;
+	row-gap: 20px;
 
 	#reset-button {
 		height: 45px;
