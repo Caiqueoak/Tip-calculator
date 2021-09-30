@@ -1,6 +1,5 @@
 import React from 'react'
 import dollarIcon from '../images/icon-dollar.svg'
-import '../styles/Amount.scss'
 
 const Amount = (props: any) => {
   return ( 

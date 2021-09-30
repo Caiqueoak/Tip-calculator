@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
 //### Primary
 $Strong-cyan: hsl(172, 67%, 45%);
 
@@ -26,4 +28,22 @@ $tip-buttons-parent-max-size: 150px;
   font-size: 2rem;
   font-weight: 700;
   width: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  //Weights: 400, 500, 700
+  font-family: 'Space Mono', monospace;
+}
+
+#root {
+  @include centered-flex;
+  flex-direction: column;
+  background-color: $Light-grayish-cyan2;
+}
+
+#logo {
+  padding: 50px 0;
 }

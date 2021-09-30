@@ -1,9 +1,23 @@
-import React, { useContext } from "react";
-import '../styles/TipButton.scss'
-import { AmountValuesContext } from "./1App";
+import React, { useContext, useState } from "react";
+import { active, AmountValuesContext, inactive } from "./1App";
 
 const TipButton = (props: any) => {
-	const {handleTipButtonClick} = useContext(AmountValuesContext)
+	const {handleTipButtonClick, setTipRate} = useContext(AmountValuesContext)
+	const [activeState, setActiveState] = useState(inactive)
+
+	function handleClick(e:any):void {
+		const newState = () => {
+			if(activeState == inactive) {
+				handleTipButtonClick(e);
+				return active;
+			} else {
+				//setTipRate(0);
+				return inactive;
+			}
+		}
+
+		setActiveState(newState);
+	}
 
 	const tipValue = props.tipValue;
 	return (
@@ -13,8 +27,8 @@ const TipButton = (props: any) => {
 					type="button"
 					className="tip-buttons-input"
 					value={props.tipValue}
-					style={props.activeState}
-					onClick={handleTipButtonClick}
+					style={activeState}
+					onClick={handleClick}
 				>
 					{tipValue + '%'}
 				</button>

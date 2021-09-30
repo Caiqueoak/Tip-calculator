@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import '../styles/Input.scss';
 import { AmountValuesContext } from "./1App";
 
 const Input = (props: any) => {

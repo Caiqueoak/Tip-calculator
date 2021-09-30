@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import "../styles/Form.scss";
 
 import TipButton from "./3TipButton";
 import Input from "./3Input";
@@ -31,7 +30,6 @@ function Form(props: any) {
 					<ol id="tip-buttons-list">
 						{tipValues.map((tipValue: number) => (
 							<TipButton
-								activeState={activeState}
 								tipValue={tipValue}
 								key={tipValue}
 							/>

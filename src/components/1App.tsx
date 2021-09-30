@@ -1,5 +1,4 @@
 import React, { useState, useEffect, createContext } from "react";
-import "../styles/_setup.scss";
 import billIcon from "../images/icon-dollar.svg";
 import personIcon from "../images/icon-person.svg";
 
@@ -11,7 +10,7 @@ const icons = {
 };
 
 // Styles
-const { active, inactive } = {
+export const { active, inactive } = {
 	active: {
 		backgroundColor: "hsl(172, 67%, 45%)",
 		color: "hsl(183, 100%, 15%)",
@@ -40,7 +39,6 @@ function App() {
 	const [total, setTotal] = useState<StringNumber>("0.00");
 
 	// Styles
-	const [activeState, setActiveState] = useState(inactive);
 
 	useEffect(
 		(defaultState = 0) => {
@@ -53,8 +51,8 @@ function App() {
 					(peopleNumber * 100)
 				).toFixed(2);
 
-				setTipAmount(Number(tipAmountPerPeople));
-				setTotal(Number(totalPerPeople));
+				setTipAmount(tipAmountPerPeople);
+				setTotal(totalPerPeople);
 			}
 		},
 		[bill, tipRate, peopleNumber]
@@ -79,7 +77,6 @@ function App() {
 
 		setTipRate(tipRate);
 		setCustomInput("Custom");
-		setActiveState((prevState) => (prevState !== active ? active : inactive));
 	}
 
 	function handleCustomInput(e: any): void {
@@ -95,7 +92,6 @@ function App() {
 		customInput: customInput,
 		tipAmount: tipAmount,
 		total: total,
-		activeState: activeState,
 		handleTipButtonClick: handleTipButtonClick,
 		handleCustomInput: handleCustomInput,
 		handleInputChange: handleInputChange,

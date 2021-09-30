@@ -1,7 +1,8 @@
 @import "variables";
 
-// MOBILE RESOLUTION
+/*** MOBILE RESOLUTION ***/
 
+//-- FORM COMPONENT --//
 #main-container {
 	display: flex;
 	flex-wrap: wrap;
@@ -75,7 +76,63 @@
 	}
 }
 
-// DESKTOP RESOLUTION
+//-- INPUT COMPONENT --//
+.number-inputs {
+	background: no-repeat center left 13px;
+	background-color: $Light-grayish-cyan;
+	padding: 8px;
+	border: none;
+	border-radius: 7px;
+	font-size: $input-font-size;
+	text-align: right;
+	color: $Very-dark-cyan;
+	font-weight: 700;
+	opacity: 1;
+	width: 100%;
+}
+
+//-- ACCOUNT COMPONENT --//
+#account-column {
+  width: 100%;
+}
+
+//-- TIP BUTTON COMPONENT --//
+li {
+	width: 100%;
+	max-width: $tip-buttons-parent-max-size;
+	.tip-buttons-input {
+		@include tipButtons;
+		cursor: pointer;
+	}
+}
+
+//-- AMOUNT COMPONENT --//
+.amounts {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.amount-names {
+  color: $White;
+  text-align: left;
+
+  tr {
+    color: $Light-grayish-cyan2;
+    font-size: .9rem;
+  }
+}
+
+.amount-values {
+  color: $Strong-cyan;
+  font-size: 2rem;
+
+  img {
+    fill: aqua;
+  }
+}
+
+/*** DESKTOP RESOLUTION ***/
 
 @media screen and (min-width: 768px) {
 	#reset-button {
