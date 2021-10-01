@@ -29,34 +29,41 @@ export const AmountValuesContext = createContext<any>(0);
 
 function App() {
 	// Account values
-	const [bill, setBill] = useState(0);
-	const [tipRate, setTipRate] = useState(0);
+	const [bill, setBill] = useState<StringNumber>(0);
+	const [tipRate, setTipRate] = useState<null | number>(0);
 	const [customInput, setCustomInput] = useState<StringNumber>("Custom");
-	const [peopleNumber, setPeopleNumber] = useState(0);
+	const [peopleNumber, setPeopleNumber] = useState<StringNumber>(0);
 
 	// Results
 	const [tipAmount, setTipAmount] = useState<StringNumber>("0.00");
 	const [total, setTotal] = useState<StringNumber>("0.00");
 
 	// Styles
+	const [idActivated, setIdActivated] = useState<null | number>();
 
-	useEffect(
-		(defaultState = 0) => {
-			if (bill !== 0 && tipRate !== 0 && peopleNumber !== 0) {
-				const tip = bill * tipRate;
+	useEffect(() => {
+		if (
+			peopleNumber != 0 &&
+			bill != 0 &&
+			typeof peopleNumber == "number" &&
+			typeof bill == "number" &&
+			typeof tipRate == "number"
+		) {
+			const tip = bill * tipRate;
 
-				const tipAmountPerPeople = (tip / peopleNumber).toFixed(2);
-				const totalPerPeople = (
-					(bill * 100 + tip * 100) /
-					(peopleNumber * 100)
-				).toFixed(2);
+			const tipAmountPerPeople = (tip / peopleNumber).toFixed(2);
+			const totalPerPeople = (
+				(bill * 100 + tip * 100) /
+				(peopleNumber * 100)
+			).toFixed(2);
 
-				setTipAmount(tipAmountPerPeople);
-				setTotal(totalPerPeople);
-			}
-		},
-		[bill, tipRate, peopleNumber]
-	);
+			setTipAmount(tipAmountPerPeople);
+			setTotal(totalPerPeople);
+		} else {
+			setTipAmount("0.00");
+			setTotal("0.00");
+		}
+	}, [bill, tipRate, peopleNumber, idActivated]);
 
 	function handleInputChange(e: any): void {
 		const id = e.target.id;
@@ -69,11 +76,12 @@ function App() {
 			case "people-number-input":
 				setter = setPeopleNumber;
 		}
-		setter(() => e.target.value);
+		setter(e.target.value);
 	}
 
 	function handleTipButtonClick(e: any): void {
-		const tipRate = e.target.value / 100;
+		const tipRate =
+			typeof e.target.value === "number" ? e.target.value / 100 : null;
 
 		setTipRate(tipRate);
 		setCustomInput("Custom");
@@ -82,19 +90,32 @@ function App() {
 	function handleCustomInput(e: any): void {
 		const tipRate = e.target.value / 100;
 
+		setIdActivated(null);
 		setTipRate(tipRate);
 		setCustomInput(e.target.value);
 	}
 
+	function handleResetClick(e: any): void {
+		setBill('0.00');
+		setCustomInput("Custom");
+		setIdActivated(null);
+		setPeopleNumber('0.00');
+		setTipRate(0);
+	}
+
 	const imports = {
-		icons: icons,
-		tipValues: tipValues,
-		customInput: customInput,
-		tipAmount: tipAmount,
+		icons,
+		tipValues,
+		customInput,
+		tipAmount,
 		total: total,
-		handleTipButtonClick: handleTipButtonClick,
-		handleCustomInput: handleCustomInput,
-		handleInputChange: handleInputChange,
+		idActivated,
+		setTipRate,
+		setIdActivated,
+		handleResetClick,
+		handleTipButtonClick,
+		handleCustomInput,
+		handleInputChange,
 	};
 
 	return (

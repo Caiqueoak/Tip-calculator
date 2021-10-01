@@ -3,10 +3,10 @@ import React, { useContext } from "react";
 import TipButton from "./3TipButton";
 import Input from "./3Input";
 import Account from "./3Account";
-import { AmountValuesContext } from "./1App";
+import { active, AmountValuesContext, inactive } from "./1App";
 
 function Form(props: any) {
-	const {icons, tipValues, handleCustomInput, customInput, activeState} = useContext(AmountValuesContext);
+	const {icons, tipValues, handleCustomInput, customInput, idActivated, handleResetClick} = useContext(AmountValuesContext);
 
 	return (
 		<form id="main-container">
@@ -16,7 +16,6 @@ function Form(props: any) {
 				<section className="input-datas">
 					<h2 className="headings">Bill</h2>
 					<Input
-						type="number"
 						step="0.01"
 						id="bill-input"
 						placeholder={0}
@@ -28,16 +27,23 @@ function Form(props: any) {
 				<section className="input-datas">
 					<h2 className="headings">Select Tip %</h2>
 					<ol id="tip-buttons-list">
-						{tipValues.map((tipValue: number) => (
+						{tipValues.map((tipValue: number, index:number) => {
+							const toggleState = index === idActivated ? active : inactive;
+							return (
 							<TipButton
 								tipValue={tipValue}
 								key={tipValue}
+								id={index}
+								toggleState={toggleState}
 							/>
-						))}
+							)
+						}
+						)}
 						<li>
 							<input
 								onChange={handleCustomInput}
 								value={customInput}
+								onClick={handleCustomInput}
 								min="0"
 								step="0.01"
 								id="custom-tip-input"
@@ -52,7 +58,6 @@ function Form(props: any) {
 				<section className="input-datas">
 					<h2 className="headings">Number of People</h2>
 					<Input
-						type="number"
 						step="0.01"
 						placeholder={0}
 						id="people-number-input"
@@ -66,7 +71,7 @@ function Form(props: any) {
 				{/* {ACCOUNT OUTPUT} */}
 				<Account />
 
-				<button id="reset-button" type="reset">
+				<button id="reset-button" type="reset" onClick={handleResetClick}>
 					RESET
 				</button>
 			</aside>

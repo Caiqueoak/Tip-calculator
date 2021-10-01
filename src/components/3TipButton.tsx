@@ -2,24 +2,21 @@ import React, { useContext, useState } from "react";
 import { active, AmountValuesContext, inactive } from "./1App";
 
 const TipButton = (props: any) => {
-	const {handleTipButtonClick, setTipRate} = useContext(AmountValuesContext)
-	const [activeState, setActiveState] = useState(inactive)
-
-	function handleClick(e:any):void {
-		const newState = () => {
-			if(activeState == inactive) {
-				handleTipButtonClick(e);
-				return active;
-			} else {
-				//setTipRate(0);
-				return inactive;
-			}
-		}
-
-		setActiveState(newState);
-	}
+	const { setIdActivated, handleTipButtonClick, setTipRate } =
+		useContext(AmountValuesContext);
 
 	const tipValue = props.tipValue;
+
+	function handleClick(e: any) {
+		if (props.toggleState == active) {
+			setIdActivated(null);
+			setTipRate(0);
+		} else {
+			setIdActivated(props.id);
+			handleTipButtonClick(e);
+		}
+	}
+
 	return (
 		<>
 			<li>
@@ -27,10 +24,10 @@ const TipButton = (props: any) => {
 					type="button"
 					className="tip-buttons-input"
 					value={props.tipValue}
-					style={activeState}
+					style={props.toggleState}
 					onClick={handleClick}
 				>
-					{tipValue + '%'}
+					{tipValue + "%"}
 				</button>
 			</li>
 		</>
