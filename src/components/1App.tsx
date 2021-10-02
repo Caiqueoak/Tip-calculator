@@ -29,10 +29,10 @@ export const AmountValuesContext = createContext<any>(0);
 
 function App() {
 	// Account values
-	const [bill, setBill] = useState<StringNumber>(0);
-	const [tipRate, setTipRate] = useState<null | number>(0);
+	const [bill, setBill] = useState<StringNumber>('0');
+	const [tipRate, setTipRate] = useState<number>(0);
 	const [customInput, setCustomInput] = useState<StringNumber>("Custom");
-	const [peopleNumber, setPeopleNumber] = useState<StringNumber>(0);
+	const [peopleNumber, setPeopleNumber] = useState<number>(0);
 
 	// Results
 	const [tipAmount, setTipAmount] = useState<StringNumber>("0.00");
@@ -40,14 +40,13 @@ function App() {
 
 	// Styles
 	const [idActivated, setIdActivated] = useState<null | number>();
+	const [globalWarningText, setGlobalWarningText] = useState('')
 
 	useEffect(() => {
 		if (
 			peopleNumber != 0 &&
 			bill != 0 &&
-			typeof peopleNumber == "number" &&
-			typeof bill == "number" &&
-			typeof tipRate == "number"
+			typeof bill === 'number'
 		) {
 			const tip = bill * tipRate;
 
@@ -80,8 +79,8 @@ function App() {
 	}
 
 	function handleTipButtonClick(e: any): void {
-		const tipRate =
-			typeof e.target.value === "number" ? e.target.value / 100 : null;
+		const tipRate = e.target.value / 100;
+		console.log(e.target.value)
 
 		setTipRate(tipRate);
 		setCustomInput("Custom");
@@ -96,11 +95,12 @@ function App() {
 	}
 
 	function handleResetClick(e: any): void {
-		setBill('0.00');
+		setBill(0);
 		setCustomInput("Custom");
 		setIdActivated(null);
-		setPeopleNumber('0.00');
+		setPeopleNumber(0);
 		setTipRate(0);
+		setGlobalWarningText('none')
 	}
 
 	const imports = {
@@ -110,6 +110,8 @@ function App() {
 		tipAmount,
 		total: total,
 		idActivated,
+		globalWarningText, 
+		setGlobalWarningText,
 		setTipRate,
 		setIdActivated,
 		handleResetClick,

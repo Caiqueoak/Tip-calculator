@@ -18,6 +18,13 @@
 		flex-direction: column;
 		row-gap: 30px;
 		padding: 0 5px;
+
+		.input-datas {
+			.input-header {
+				display: flex;
+				justify-content: space-between;
+			}
+		}
 	}
 }
 
@@ -66,8 +73,8 @@
 		border: none;
 		border-radius: 7px;
 		box-shadow: 1px 3px 5px -2px black;
-    transition: all .1s;
-    cursor: pointer;
+		transition: all 0.1s;
+		cursor: pointer;
 
 		&:active {
 			box-shadow: none !important;
@@ -77,6 +84,15 @@
 }
 
 //-- INPUT COMPONENT --//
+.input-container {
+	position: relative;
+
+	.warning-text {
+		position: absolute;
+		right: 0;
+	}
+}
+
 .number-inputs {
 	background: no-repeat center left 13px;
 	background-color: $Light-grayish-cyan;
@@ -93,7 +109,7 @@
 
 //-- ACCOUNT COMPONENT --//
 #account-column {
-  width: 100%;
+	width: 100%;
 }
 
 //-- TIP BUTTON COMPONENT --//
@@ -108,37 +124,37 @@ li {
 
 //-- AMOUNT COMPONENT --//
 .amounts {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
 }
 
 .amount-names {
-  color: $White;
-  text-align: left;
+	color: $White;
+	text-align: left;
 
-  tr {
-    color: $Light-grayish-cyan2;
-    font-size: .9rem;
-  }
+	tr {
+		color: $Light-grayish-cyan2;
+		font-size: 0.9rem;
+	}
 }
 
 .amount-values {
-  color: $Strong-cyan;
-  font-size: 2rem;
+	color: $Strong-cyan;
+	font-size: 2rem;
 
-  img {
-    fill: aqua;
-  }
+	img {
+		fill: aqua;
+	}
 }
 
 /*** DESKTOP RESOLUTION ***/
 
 @media screen and (min-width: 768px) {
 	#reset-button {
-    transition: all .3s;
+		transition: all 0.3s;
 		&:hover {
-      box-shadow: 3px 3px 5px -1px black !important;
+			box-shadow: 3px 3px 5px -1px black !important;
 		}
 	}
 }

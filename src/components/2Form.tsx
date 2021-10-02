@@ -14,17 +14,16 @@ function Form(props: any) {
 			<main id="input-data-container">
 				{/* {BILL INPUT} */}
 				<section className="input-datas">
-					<h2 className="headings">Bill</h2>
 					<Input
 						step="0.01"
 						id="bill-input"
 						placeholder={0}
 						icon={icons.bill}
-					/>
+					>Bill</Input>
 				</section>
 
 				{/* {TIP INPUT} */}
-				<section className="input-datas">
+				<section>
 					<h2 className="headings">Select Tip %</h2>
 					<ol id="tip-buttons-list">
 						{tipValues.map((tipValue: number, index:number) => {
@@ -56,13 +55,12 @@ function Form(props: any) {
 
 				{/* {NUMBER OF PEOPLE	 INPUT} */}
 				<section className="input-datas">
-					<h2 className="headings">Number of People</h2>
 					<Input
 						step="0.01"
 						placeholder={0}
 						id="people-number-input"
 						icon={icons.people}
-					/>
+					>Number of People</Input>
 				</section>
 			</main>
 
