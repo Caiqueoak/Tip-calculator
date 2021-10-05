@@ -5,7 +5,6 @@ const Input = (props: any) => {
 	const { handleInputChange, globalWarningText, setGlobalWarningText } =
 		useContext(AmountValuesContext);
 	const [warningText, setWarningText] = useState("none");
-	//const [input, setInput] = useState(0);
 
 	function handleLocalInputChange(e: any) {
 		const zerosRegex = /0+/;
@@ -44,7 +43,7 @@ const Input = (props: any) => {
 				id={props.id}
 				placeholder={props.placeholder}
 				onChange={handleLocalInputChange}
-				style={{ backgroundImage: props.icon }}
+				style={{backgroundImage: props.icon}}
 			/>
 		</>
 	);

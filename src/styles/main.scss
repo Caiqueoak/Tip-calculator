@@ -2,6 +2,10 @@
 
 /*** MOBILE RESOLUTION ***/
 
+#logo {
+	padding: 50px 0;
+}
+
 //-- FORM COMPONENT --//
 #main-container {
 	display: flex;
@@ -11,7 +15,7 @@
 	row-gap: 30px;
 	padding: 20px;
 	width: 100%;
-	border-radius: 10px;
+	border-radius: 20px;
 
 	#input-data-container {
 		display: flex;
@@ -38,20 +42,30 @@
 #tip-buttons-list {
 	padding-top: 20px;
 	list-style-type: none;
-	/*display: grid;
-	grid-template-rows: repeat(3, 1fr);
-	grid-template-columns: repeat(2, 1fr);*/
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-evenly;
 	max-width: fit-content;
-	gap: 18px;
+	gap: 15px;
 
 	li {
-		max-width: $tip-buttons-parent-max-size;
+		max-width: $tip-buttons-parent-max-width;
 		#custom-tip-input {
 			@include tipButtons;
 			background-color: $Light-grayish-cyan;
+
+			&::placeholder {
+				text-align: right;
+				color: $Very-dark-cyan;
+				opacity: 0.7;
+				transform: translateY(-3px);
+				padding-right: 20px;
+
+				@media (min-width: 768px) {
+					text-align: center;
+					padding-right: 0;
+				}
+			}
 		}
 	}
 }
@@ -115,7 +129,7 @@
 //-- TIP BUTTON COMPONENT --//
 li {
 	width: 100%;
-	max-width: $tip-buttons-parent-max-size;
+	max-width: $tip-buttons-parent-max-width;
 	.tip-buttons-input {
 		@include tipButtons;
 		cursor: pointer;
@@ -127,34 +141,73 @@ li {
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
-}
 
-.amount-names {
-	color: $White;
-	text-align: left;
+	.amount-names {
+		color: $White;
+		text-align: left;
+	}
 
-	tr {
+	.per-person {
 		color: $Light-grayish-cyan2;
 		font-size: 0.9rem;
+		opacity: 0.8;
 	}
-}
 
-.amount-values {
-	color: $Strong-cyan;
-	font-size: 2rem;
+	.amount-values {
+		color: $Strong-cyan;
+		font-size: 2rem;
+		font-weight: 600;
 
-	img {
-		fill: aqua;
+		.dollar-icons {
+			margin-right: 2px;
+			width: 14px;
+		}
 	}
 }
 
 /*** DESKTOP RESOLUTION ***/
 
 @media screen and (min-width: 768px) {
-	#reset-button {
-		transition: all 0.3s;
-		&:hover {
-			box-shadow: 3px 3px 5px -1px black !important;
+	#logo {
+		padding: 0;
+		padding-bottom: 20px;
+	}
+
+	//-- FORM COMPONENT --//
+	#main-container {
+		display: flex;
+		background-color: $White;
+		padding: 30px 10px;
+		width: 950px;
+		justify-content: space-evenly;
+
+		#input-data-container {
+			width: 50%;
+			padding: 0px;
+
+			#tip-buttons-list {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				grid-template-rows: repeat(2, 1fr);
+			}
 		}
+		#account-container {
+			justify-content: space-between;
+			padding: 50px 40px 40px;
+
+			#reset-button {
+				transition: all 0.3s;
+				&:hover {
+					box-shadow: 3px 3px 5px -1px black !important;
+				}
+			}
+		}
+	}
+
+	//-- ACCOUNT COMPONENT --//
+	#account-column {
+		display: flex;
+		flex-direction: column;
+		row-gap: 35px;
 	}
 }

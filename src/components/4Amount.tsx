@@ -1,21 +1,21 @@
 import React from "react";
-import dollarIcon from "../images/icon-dollar.svg";
+import dollarIcon from "../images/amounts-icon-dollar.svg";
 
 const Amount = (props: any) => {
 	return (
 		<section className="amounts">
-			<table className="amount-names">
+			<table>
 				<tbody>
 					<tr>
-						<th>{props.children}</th>
+						<th className="amount-names">{props.children}</th>
 					</tr>
 					<tr>
-						<td>/ person</td>
+						<td className="per-person">/ person</td>
 					</tr>
 				</tbody>
 			</table>
 			<label className="amount-values">
-				<img src={dollarIcon} alt="dollar symbol" />
+				<img className="dollar-icons" src={dollarIcon} alt="dollar symbol" />
 				{props.valueAmount}
 			</label>
 		</section>

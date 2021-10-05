@@ -29,7 +29,7 @@ export const AmountValuesContext = createContext<any>(0);
 
 function App() {
 	// Account values
-	const [bill, setBill] = useState<StringNumber>('0');
+	const [bill, setBill] = useState<number>(0);
 	const [tipRate, setTipRate] = useState<number>(0);
 	const [customInput, setCustomInput] = useState<StringNumber>("Custom");
 	const [peopleNumber, setPeopleNumber] = useState<number>(0);
@@ -44,9 +44,8 @@ function App() {
 
 	useEffect(() => {
 		if (
-			peopleNumber != 0 &&
-			bill != 0 &&
-			typeof bill === 'number'
+			peopleNumber >= 1 &&
+			bill != 0
 		) {
 			const tip = bill * tipRate;
 
@@ -96,10 +95,10 @@ function App() {
 
 	function handleResetClick(e: any): void {
 		setBill(0);
-		setCustomInput("Custom");
-		setIdActivated(null);
 		setPeopleNumber(0);
 		setTipRate(0);
+		setCustomInput("Custom");
+		setIdActivated(null);
 		setGlobalWarningText('none')
 	}
 
