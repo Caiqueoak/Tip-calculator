@@ -79,8 +79,8 @@ function App() {
 	}
 
 	// SETS THE TIP RATE
-	function handleTipButtonClick(e: any): void {
-		const tipRate = e.target.value / 100;
+	function handleTipButtonClick(tipValue: number): void {
+		const tipRate = tipValue / 100;
 
 		setTipRate(tipRate);
 		setCustomInput("Custom");

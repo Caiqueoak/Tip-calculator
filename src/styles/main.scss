@@ -47,18 +47,19 @@
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	grid-template-rows: repeat(2, 1fr);
-	gap: 15px;
+	gap: 12px;
 
 	li {
 		width: 100%;
 		#custom-tip-input {
 			@include tipButtons;
 			background-color: $Light-grayish-cyan;
+			border-radius: 5px;
 
 			&::placeholder {
 				text-align: right;
 				color: $Very-dark-cyan;
-				opacity: 0.7;
+				opacity: 0.65;
 				transform: translateY(-3px);
 				padding-right: 20px;
 
@@ -66,6 +67,9 @@
 					text-align: center;
 					padding-right: 0;
 				}
+			}
+			&:focus-within {
+				outline: 2px $Strong-cyan solid;
 			}
 		}
 	}
@@ -79,17 +83,19 @@
 	padding: 20px;
 	width: 100%;
 	max-width: 450px;
-	row-gap: 20px;
 
 	#reset-button {
-		height: 45px;
+		height: 50px;
 		width: 100%;
 		background-color: $Strong-cyan;
 		border: none;
 		border-radius: 7px;
-		box-shadow: 1px 3px 5px -2px black;
+		box-shadow: 0px 3px 5px -2px black;
 		transition: all 0.1s;
 		cursor: pointer;
+		font-weight: 700;
+		font-size: 1.2rem;
+		color: $Very-dark-cyan;
 
 		&:active {
 			box-shadow: none !important;
@@ -99,12 +105,19 @@
 }
 
 //-- INPUT COMPONENT --//
-.input-container {
+.input-header {
+	display: flex;
 	position: relative;
 
+	.headings {
+	}
 	.warning-text {
-		position: absolute;
+		position: relative;
 		right: 0;
+		font-size: .9rem;
+		font-weight: 600;
+		color: coral;
+		text-align: right;
 	}
 }
 
@@ -113,18 +126,29 @@
 	background-color: $Light-grayish-cyan;
 	padding: 8px;
 	border: none;
-	border-radius: 7px;
+	border-radius: 5px;
 	font-size: $input-font-size;
 	text-align: right;
 	color: $Very-dark-cyan;
 	font-weight: 700;
 	opacity: 1;
 	width: 100%;
+
+	&::placeholder {
+		opacity: 0.6;
+	}
+	&:focus-within {
+		outline: 2px $Strong-cyan solid;
+	}
 }
 
 //-- ACCOUNT COMPONENT --//
 #account-column {
+	display: flex;
+	flex-direction: column;
+	row-gap: 25px;
 	width: 100%;
+	padding: 20px 0 35px;
 }
 
 //-- TIP BUTTON COMPONENT --//
@@ -141,10 +165,11 @@ li {
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 
 	.amount-names {
-		color: $White;
-		text-align: left;
+		color: $Light-grayish-cyan;
+		font-weight: 600;
 	}
 
 	.per-person {
@@ -152,16 +177,16 @@ li {
 		font-size: 0.9rem;
 		opacity: 0.8;
 	}
+}
 
-	.amount-values {
-		color: $Strong-cyan;
-		font-size: 2rem;
-		font-weight: 600;
+.amount-values {
+	color: $Strong-cyan;
+	font-size: 2rem;
+	font-weight: 600;
 
-		.dollar-icons {
-			margin-right: 2px;
-			width: 14px;
-		}
+	.dollar-icons {
+		margin-right: 2px;
+		width: 14px;
 	}
 }
 
@@ -170,22 +195,21 @@ li {
 @media screen and (min-width: 768px) {
 	#logo {
 		padding: 0;
-		padding-bottom: 20px;
+		margin-top: 20px;
 	}
 
 	//-- FORM COMPONENT --//
 	#main-container {
 		padding: 30px 10px;
 		margin: 30px 0;
-		width: 90vw;
-		max-width: none;
+		width: 97vw;
+		max-width: 925px;
 		flex-direction: row;
-		flex-wrap: nowrap;
+		align-items: stretch;
 		justify-content: space-evenly;
 
 		#input-data-container {
-			width: 50%;
-			padding: 0px;
+			width: 100%;
 
 			#tip-buttons-list {
 				display: grid;
@@ -196,21 +220,43 @@ li {
 		#account-container {
 			justify-content: space-between;
 			padding: 50px 40px 40px;
-			width: 50%;
+			width: 100%;
 
 			#reset-button {
-				transition: all 0.3s;
+				opacity: 0.4;
 				&:hover {
-					box-shadow: 3px 3px 5px -1px black !important;
+					opacity: 1;
 				}
 			}
 		}
 	}
 
-	//-- ACCOUNT COMPONENT --//
-	#account-column {
-		display: flex;
-		flex-direction: column;
-		row-gap: 35px;
+	//-- AMOUNT COMPONENT --//
+	.amounts {
+		.value-per-person-column {
+			display: flex;
+			flex-direction: column;
+
+			.amount-names {
+				color: $Light-grayish-cyan;
+			}
+			.per-person {
+				color: $Light-grayish-cyan2;
+				font-size: 0.9rem;
+				opacity: 0.8;
+			}
+		}
+	}
+
+	.amount-values {
+		color: $Strong-cyan;
+		font-size: 2.3rem;
+		font-weight: 700;
+		font-size: 2.7rem !important;
+
+		.dollar-icons {
+			margin-right: 2px;
+			width: 20px !important;
+		}
 	}
 }

@@ -7,13 +7,14 @@ const TipButton = (props: any) => {
 
 	const tipValue = props.tipValue;
 
-	function handleClick(e: any) {
+	function handleClick() {
 		if (props.toggleState == active) {
 			setIdActivated(null);
 			setTipRate(0);
 		} else {
 			setIdActivated(props.id);
-			handleTipButtonClick(e);
+			handleTipButtonClick(tipValue);
+			console.log(props.toggleState)
 		}
 	}
 
