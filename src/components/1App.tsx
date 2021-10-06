@@ -25,14 +25,14 @@ type StringNumber = string | number;
 
 const tipValues = [5, 10, 15, 25, 50];
 
-export const AmountValuesContext = createContext<any>(0);
+export const AmountValuesContext = createContext<any>({});
 
 function App() {
 	// Account values
 	const [bill, setBill] = useState<number>(0);
 	const [tipRate, setTipRate] = useState<number>(0);
 	const [customInput, setCustomInput] = useState<StringNumber>("Custom");
-	const [peopleNumber, setPeopleNumber] = useState<number>(0);
+	let [peopleNumber, setPeopleNumber] = useState<number>(0);
 
 	// Results
 	const [tipAmount, setTipAmount] = useState<StringNumber>("0.00");
@@ -40,14 +40,13 @@ function App() {
 
 	// Styles
 	const [idActivated, setIdActivated] = useState<null | number>();
-	const [globalWarningText, setGlobalWarningText] = useState('')
+	const [globalWarningText, setGlobalWarningText] = useState("");
 
 	useEffect(() => {
-		if (
-			peopleNumber >= 1 &&
-			bill != 0
-		) {
+		// Calculates the tip and bill values
+		if (peopleNumber >= 1 && bill != 0) {
 			const tip = bill * tipRate;
+			peopleNumber = Math.trunc(peopleNumber);
 
 			const tipAmountPerPeople = (tip / peopleNumber).toFixed(2);
 			const totalPerPeople = (
@@ -58,11 +57,13 @@ function App() {
 			setTipAmount(tipAmountPerPeople);
 			setTotal(totalPerPeople);
 		} else {
+			// Sets the default tip amount and total values
 			setTipAmount("0.00");
 			setTotal("0.00");
 		}
 	}, [bill, tipRate, peopleNumber, idActivated]);
 
+	// SETS THE BILL AND/OR PEOPLE NUMBER TO THE INPUT
 	function handleInputChange(e: any): void {
 		const id = e.target.id;
 		let setter: any;
@@ -77,9 +78,9 @@ function App() {
 		setter(e.target.value);
 	}
 
+	// SETS THE TIP RATE
 	function handleTipButtonClick(e: any): void {
 		const tipRate = e.target.value / 100;
-		console.log(e.target.value)
 
 		setTipRate(tipRate);
 		setCustomInput("Custom");
@@ -93,13 +94,14 @@ function App() {
 		setCustomInput(e.target.value);
 	}
 
+	// RESET ALL THE VALUES
 	function handleResetClick(e: any): void {
 		setBill(0);
 		setPeopleNumber(0);
 		setTipRate(0);
 		setCustomInput("Custom");
 		setIdActivated(null);
-		setGlobalWarningText('none')
+		setGlobalWarningText("none");
 	}
 
 	const imports = {
@@ -107,10 +109,9 @@ function App() {
 		tipValues,
 		customInput,
 		tipAmount,
-		total: total,
+		total,
 		idActivated,
-		globalWarningText, 
-		setGlobalWarningText,
+		globalWarningText,
 		setTipRate,
 		setIdActivated,
 		handleResetClick,

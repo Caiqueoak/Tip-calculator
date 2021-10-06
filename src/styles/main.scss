@@ -8,13 +8,13 @@
 
 //-- FORM COMPONENT --//
 #main-container {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
+	@include centered-flex;
+	flex-direction: column;
 	background-color: $White;
 	row-gap: 30px;
 	padding: 20px;
 	width: 100%;
+	max-width: 550px;
 	border-radius: 20px;
 
 	#input-data-container {
@@ -22,6 +22,8 @@
 		flex-direction: column;
 		row-gap: 30px;
 		padding: 0 5px;
+		width: 100%;
+		max-width: 375px;
 
 		.input-datas {
 			.input-header {
@@ -42,14 +44,13 @@
 #tip-buttons-list {
 	padding-top: 20px;
 	list-style-type: none;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-evenly;
-	max-width: fit-content;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: repeat(2, 1fr);
 	gap: 15px;
 
 	li {
-		max-width: $tip-buttons-parent-max-width;
+		width: 100%;
 		#custom-tip-input {
 			@include tipButtons;
 			background-color: $Light-grayish-cyan;
@@ -77,7 +78,7 @@
 	border-radius: 12px;
 	padding: 20px;
 	width: 100%;
-	max-width: 400px;
+	max-width: 450px;
 	row-gap: 20px;
 
 	#reset-button {
@@ -129,7 +130,6 @@
 //-- TIP BUTTON COMPONENT --//
 li {
 	width: 100%;
-	max-width: $tip-buttons-parent-max-width;
 	.tip-buttons-input {
 		@include tipButtons;
 		cursor: pointer;
@@ -175,10 +175,12 @@ li {
 
 	//-- FORM COMPONENT --//
 	#main-container {
-		display: flex;
-		background-color: $White;
 		padding: 30px 10px;
-		width: 950px;
+		margin: 30px 0;
+		width: 90vw;
+		max-width: none;
+		flex-direction: row;
+		flex-wrap: nowrap;
 		justify-content: space-evenly;
 
 		#input-data-container {
@@ -194,6 +196,7 @@ li {
 		#account-container {
 			justify-content: space-between;
 			padding: 50px 40px 40px;
+			width: 50%;
 
 			#reset-button {
 				transition: all 0.3s;

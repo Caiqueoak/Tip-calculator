@@ -2,27 +2,40 @@ import React, { useContext, useEffect, useState } from "react";
 import { AmountValuesContext } from "./1App";
 
 const Input = (props: any) => {
-	const { handleInputChange, globalWarningText, setGlobalWarningText } =
+	const { handleInputChange, globalWarningText } =
 		useContext(AmountValuesContext);
-	const [warningText, setWarningText] = useState("none");
+	const [[warningTextDisplay, warningText], setWarningText] = useState([
+		"none",
+		'',
+	]);
 
 	function handleLocalInputChange(e: any) {
+		// Shows zero number message error
 		const zerosRegex = /0+/;
 		const inputValue = e.target.value.toString();
 
 		const displayState =
 			inputValue.match(zerosRegex) == inputValue ? "inline" : "none";
-		console.log("local: " + displayState);
-		console.log("localValue: " + e.target.value);
+
 		handleInputChange(e);
-		setWarningText(displayState);
+		setWarningText([displayState, "Can't be zero"]);
+
+		// Shows decimal number message error for number of people
+		const intInputValue = Math.trunc(e.target.value);
+
+		if (
+			props.id === "people-number-input" &&
+			intInputValue != e.target.value &&
+			displayState === "none"
+		) {
+			setWarningText(["inline", "Can't put decimals"]);
+		}
 	}
 
 	useEffect(() => {
+		// Toggle off all input messages after reset button is clicked
 		if (globalWarningText == "none") {
-			console.log("globalUseState: " + globalWarningText);
-			setWarningText(globalWarningText);
-			setGlobalWarningText("");
+			setWarningText(["none", ""]);
 		}
 	}, [globalWarningText]);
 
@@ -30,8 +43,8 @@ const Input = (props: any) => {
 		<>
 			<div className="input-header">
 				<h2 className="headings">{props.children}</h2>
-				<p className="warning-text" style={{ display: warningText }}>
-					Can't be Zero
+				<p className="warning-text" style={{ display: warningTextDisplay }}>
+					{warningText}
 				</p>
 			</div>
 
@@ -43,7 +56,7 @@ const Input = (props: any) => {
 				id={props.id}
 				placeholder={props.placeholder}
 				onChange={handleLocalInputChange}
-				style={{backgroundImage: props.icon}}
+				style={{ backgroundImage: props.icon }}
 			/>
 		</>
 	);

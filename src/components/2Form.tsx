@@ -56,7 +56,7 @@ function Form(props: any) {
 				{/* {NUMBER OF PEOPLE	 INPUT} */}
 				<section className="input-datas">
 					<Input
-						step="0.01"
+						step="1"
 						placeholder={0}
 						id="people-number-input"
 						icon={icons.people}
