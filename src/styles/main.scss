@@ -188,12 +188,19 @@ li {
 	}
 }
 
+footer {
+	position: absolute;
+	bottom: 0;
+	font-weight: 700;
+	font-size: 1rem;
+	padding: 10px;
+}
+
 /*** DESKTOP RESOLUTION ****/
 
 @media screen and (min-width: 768px) {
 	#logo {
 		padding: 0;
-		margin-top: 20px;
 	}
 
 	//-- FORM COMPONENT --//

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, createContext } from "react";
 import billIcon from "../images/icon-dollar.svg";
 import personIcon from "../images/icon-person.svg";
+import { Footer } from "./2Footer";
 
 import Form from "./2Form";
 
@@ -132,6 +133,8 @@ function App() {
 			<AmountValuesContext.Provider value={imports}>
 				<Form />
 			</AmountValuesContext.Provider>
+
+			<Footer />
 		</>
 	);
 }
