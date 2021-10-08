@@ -109,12 +109,10 @@
 	display: flex;
 	position: relative;
 
-	.headings {
-	}
 	.warning-text {
 		position: relative;
 		right: 0;
-		font-size: .9rem;
+		font-size: 0.9rem;
 		font-weight: 600;
 		color: coral;
 		text-align: right;
@@ -208,14 +206,8 @@ li {
 		align-items: stretch;
 		justify-content: space-evenly;
 
-		#input-data-container {
-			width: 100%;
-
-			#tip-buttons-list {
-				display: grid;
-				grid-template-columns: repeat(3, 1fr);
-				grid-template-rows: repeat(2, 1fr);
-			}
+		#tip-buttons-list {
+			grid-template-columns: repeat(3, 1fr);
 		}
 		#account-container {
 			justify-content: space-between;
@@ -232,30 +224,10 @@ li {
 	}
 
 	//-- AMOUNT COMPONENT --//
-	.amounts {
-		.value-per-person-column {
-			display: flex;
-			flex-direction: column;
-
-			.amount-names {
-				color: $Light-grayish-cyan;
-			}
-			.per-person {
-				color: $Light-grayish-cyan2;
-				font-size: 0.9rem;
-				opacity: 0.8;
-			}
-		}
-	}
-
 	.amount-values {
-		color: $Strong-cyan;
-		font-size: 2.3rem;
-		font-weight: 700;
 		font-size: 2.7rem !important;
 
 		.dollar-icons {
-			margin-right: 2px;
 			width: 20px !important;
 		}
 	}

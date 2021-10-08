@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import { active, AmountValuesContext, inactive } from "./1App";
+import React, { useContext } from "react";
+import { active, AmountValuesContext } from "./1App";
 
 const TipButton = (props: any) => {
 	const { setIdActivated, handleTipButtonClick, setTipRate } =
@@ -14,7 +14,6 @@ const TipButton = (props: any) => {
 		} else {
 			setIdActivated(props.id);
 			handleTipButtonClick(tipValue);
-			console.log(props.toggleState)
 		}
 	}
 

@@ -24,7 +24,7 @@ const Input = (props: any) => {
 		// Shows zero number message error
 		if (displayState === "inline") {
 			setWarningText([displayState, "Can't be zero"]);
-			setOutline("2px solid orange");
+			setOutline("2px solid coral");
 		}
 		// Shows decimal number message error for number of people
 		else if (
@@ -32,7 +32,7 @@ const Input = (props: any) => {
 			intInputValue != e.target.value
 		) {
 			setWarningText(["inline", "Can't put decimals"]);
-			setOutline("2px solid orange");
+			setOutline("2px solid coral");
 		}
 		// Resets the input's view
 		else {
@@ -65,7 +65,8 @@ const Input = (props: any) => {
 				id={props.id}
 				placeholder={props.placeholder}
 				onChange={handleLocalInputChange}
-				style={{ backgroundImage: props.icon/*, outline: outline*/ }}
+				onBlur={() => setOutline('none')}
+				style={{ backgroundImage: props.icon, outline: outline }}
 			/>
 		</>
 	);
